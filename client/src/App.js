@@ -16,6 +16,7 @@ import FeedPlaceholder from './Components/FeedPlaceholder/FeedPlaceholder';
 
 import RequestPlaceholder from  './Components/RequestPlaceholder/RequestPlaceholder'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import Donate from './Components/Donate/Donate';
 
 function App() {
   return (
@@ -42,7 +43,8 @@ function App() {
 
         {/* H  */}
        {/* <RequestPlaceholder/> */}
-       <AboutUs/>
+       {/* <AboutUs/> */}
+       <Donate/>
     </div>
   );
 }
