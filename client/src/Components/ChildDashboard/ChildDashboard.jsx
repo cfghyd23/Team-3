@@ -1,7 +1,7 @@
 import React from 'react'
 import './ChildDashboard.css'
 import Feedcard from '../Feedcard/Feedcard'
-
+import DashboardNavbar from '../DashboardNavbar/DashboardNavbar'
 const item = [
   {
     key: 1,
@@ -26,11 +26,14 @@ const ChildDashboard = () => {
   });
 
   return (
+    <>
+    <DashboardNavbar/>
     <div className='container '>
       <div className="row align-items-">
         {feedposts}
       </div>
     </div>
+    </>
   )
 }
 
