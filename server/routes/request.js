@@ -1,8 +1,8 @@
 const exp = require("express");
 const asyncHandler = require("express-async-handler")
 const mongodbConnector = require("../models/mongodb.js")
-const Response = require("../models/http.js")
 const router = exp.Router();
+const { ObjectId } = require('mongodb');
 
 router.get('/', asyncHandler(async (req, res) => {
     try {
@@ -51,7 +51,8 @@ router.post('/create', asyncHandler(async (req,res) => {
           "email": req.body.email,
           "status": 0, // default status is open
         //   "assignedTo": "",
-          "time_created": new Date().getTime() // current timestamp
+          "time_created": new Date().getTime(), // current timestamp
+          "city": req.body.city,
         })
 
     res.status(200).json({ message: "Request created successfully" });
@@ -62,28 +63,61 @@ router.post('/create', asyncHandler(async (req,res) => {
 }))
   
 
-// router.put('/:id', asyncHandler(async (req,res) => {
-//     const mongodb = new mongodbConnector()
-//     let reqs = mongodb.connect("requests")
+// update status of request to closed
+router.put('/close/:id', asyncHandler(async (req, res) => {
+  try {
+    const mongodb = new mongodbConnector();
+    let reqs = await mongodb.connect("requests");
 
-//     let json = await reqs.updateOne({
-//         "_id" : req.params.id
-//     },{
-//         "tag": req.body.tag,
-//         "emergency": req.body.emergency,
-//         "title": req.body.title,
-//         "description": req.body.desc,
-//         "additionalFiles": req.body.files,
-//         "funds": req.body.funds,
-//         "email": req.body.email,
-//         "status": req.body.status, 
-//         "assignedTo": req.body.assignedTo
-//     })
+    const id = req.params.id;
+    const query = { _id: ObjectId(id) };
 
-//     let response = new Response(res);
-//     response.sendJson(json, 200)
+    const updateFields = {
+      $set: {
+        status: 2
+      }
+    };
 
-// }))
+    const result = await reqs.updateOne(query, updateFields);
+
+    if (result.modifiedCount === 1) {
+      res.status(200).json({ message: "Request updated successfully" });
+    } else {
+      res.status(404).json({ error: "Request not found" });
+    }
+  } catch (error) {
+    console.error("Error updating request:", error);
+    res.status(500).json({ error: "An error occurred while updating the request" });
+  }
+}))
+
+// update the assigned member for the request
+router.put('/assign/:id', asyncHandler(async (req, res) => {
+    try {
+      const mongodb = new mongodbConnector();
+      let reqs = await mongodb.connect("requests");
+  
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+  
+      const updateFields = {
+        $set: {
+            assignedTo: req.body.assignedTo
+        }
+      };
+  
+      const result = await reqs.updateOne(query, updateFields);
+  
+      if (result.modifiedCount === 1) {
+        res.status(200).json({ message: "Request updated successfully" });
+      } else {
+        res.status(404).json({ error: "Request not found" });
+      }
+    } catch (error) {
+      console.error("Error updating request:", error);
+      res.status(500).json({ error: "An error occurred while updating the request" });
+    }
+  }))
 
 module.exports = router
 
