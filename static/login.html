@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 300px;
+      padding: 16px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    p {
+      text-align: center;
+      color: #555;
+    }
+
+    a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    function redirectToUserRegistration() {
+      window.location.href = "user_register.html";
+    }
+
+    function redirectToStudentRegistration() {
+      window.location.href = "student_register.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form action="login.php" method="POST">
+      <label for="username">Username</label>
+      <input type="text" placeholder="Enter your username" name="username">
+      
+      <label for="password">Password</label>
+      <input type="password" placeholder="Enter your password" name="password">
+      
+      <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account?</p>
+    <p>
+      <a href="#" onclick="redirectToUserRegistration()">Register as User</a> |
+      <a href="#" onclick="redirectToStudentRegistration()">Register as Student</a>
+    </p>
+  </div>
+</body>
+</html>
