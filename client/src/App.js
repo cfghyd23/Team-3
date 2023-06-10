@@ -9,6 +9,9 @@ import { StudentRegister } from './Components/Register/StudentRegister';
 import { Routes, Route, Navigate , BrowserRouter } from "react-router-dom";
 
 
+// V 
+import ContactForm from './Components/ContactForm/ContactForm'
+
 function App() {
   return (
     <div className="App">
@@ -22,9 +25,11 @@ function App() {
        {/* <Main/> */}
        {/* <Feedcard title="Feed Title" description="Title description comes here" tags="Fun Facts"/> */}
        {/* <Feedcard /> */}
-       <ChildDashboard/>
+       {/* <ChildDashboard/> */}
        {/* <MemberRegister/> */}
        {/* <StudentRegister/> */}
+
+       <ContactForm/>
     </div>
   );
 }

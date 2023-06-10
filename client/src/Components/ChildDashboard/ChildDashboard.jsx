@@ -2,6 +2,7 @@ import React from 'react'
 import './ChildDashboard.css'
 import Feedcard from '../Feedcard/Feedcard'
 import DashboardNavbar from '../DashboardNavbar/DashboardNavbar'
+import StudentProfile from '../StudentProfile.jsx/StudentProfile'
 const item = [
   {
     key: 1,
@@ -33,6 +34,7 @@ const ChildDashboard = () => {
         {feedposts}
       </div>
     </div>
+    <StudentProfile/>
     </>
   )
 }
