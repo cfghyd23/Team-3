@@ -5,8 +5,9 @@ const router = exp.Router();
 const getUserData = require("./user.js").getUserData
 const { ObjectId } = require('mongodb');
 
-router.get('/', asyncHandler(async (req, res) => {
-    let user = await getUserData(req.body.user)
+router.post('/', asyncHandler(async (req, res) => {
+  console.log(req.body)  
+  let user = await getUserData(req.body.user)
     let isMember = false;
     
     if(user.role == 1){
@@ -38,7 +39,7 @@ router.get('/:id', asyncHandler(async (req,res) => {
         let json = await req.findOne({
             "_id": req.params.id
         })
-
+c
         res.status(200).json(json);
     } catch (error) {
         console.error("Error retrieving requests:", error);
@@ -103,33 +104,6 @@ router.put('/close/:id', asyncHandler(async (req, res) => {
 }))
 
 // update the assigned member for the request
-router.put('/assign/:id', asyncHandler(async (req, res) => {
-    try {
-      const mongodb = new mongodbConnector();
-      let reqs = await mongodb.connect("requests");
-  
-      const id = req.params.id;
-      const query = { _id: ObjectId(id) };
-  
-      const updateFields = {
-        $set: {
-            assignedTo: req.body.assignedTo
-        }
-      };
-  
-      const result = await reqs.updateOne(query, updateFields);
-  
-      if (result.modifiedCount === 1) {
-        res.status(200).json({ message: "Request updated successfully" });
-      } else {
-        res.status(404).json({ error: "Request not found" });
-      }
-    } catch (error) {
-      console.error("Error updating request:", error);
-      res.status(500).json({ error: "An error occurred while updating the request" });
-    }
-  }))
-
 router.post('/claim',asyncHandler(async (req,res)=>{
   const mongodb = new mongodbConnector();
   let reqs = await mongodb.connect("requests");
@@ -138,7 +112,7 @@ router.post('/claim',asyncHandler(async (req,res)=>{
     _id : new ObjectId(req.body.id),
   },{
     $set : {
-      status : 0
+      status : 1
     }
   })
 
