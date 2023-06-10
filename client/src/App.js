@@ -7,14 +7,14 @@ import Main from "./Components/Main/Main"
 import { MemberRegister } from './Components/Register/MemberRegister';
 import { StudentRegister } from './Components/Register/StudentRegister';
 import { Routes, Route, Navigate , BrowserRouter } from "react-router-dom";
-
+import AboutUs from './Components/AboutUs/AboutUs'
 
 // V 
 import ContactForm from './Components/ContactForm/ContactForm'
 import FeedPlaceholder from './Components/FeedPlaceholder/FeedPlaceholder';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
-
+import RequestPlaceholder from  './Components/RequestPlaceholder/RequestPlaceholder'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 function App() {
@@ -34,8 +34,15 @@ function App() {
        {/* <MemberRegister/> */}
        {/* <StudentRegister/> */}
 
-       <ContactForm/>
+       {/* <ContactForm/> */}
        {/* <FeedPlaceholder/> */}
+
+       {/* <AboutUs/> */}
+       
+
+        {/* H  */}
+       {/* <RequestPlaceholder/> */}
+       <AboutUs/>
     </div>
   );
 }
