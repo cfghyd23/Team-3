@@ -10,7 +10,7 @@ const app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let user_router = require('./routes/user.js');
+let user_router = require('./routes/user.js').user_router;
 let feed_router = require('./routes/feed.js');
 let request_router = require('./routes/request.js');
 let groups_router = require('./routes/groups.js');

@@ -2,16 +2,27 @@ const exp = require("express");
 const asyncHandler = require("express-async-handler")
 const mongodbConnector = require("../models/mongodb.js")
 const router = exp.Router();
+const getUserData = require("./user.js").getUserData
 const { ObjectId } = require('mongodb');
 
 router.get('/', asyncHandler(async (req, res) => {
+    let user = await getUserData(req.body.user)
+    let isMember = false;
+    
+    if(user.role == 1){
+      isMember = true;
+    }
     try {
       const mongodb = new mongodbConnector();
       let reqs = await mongodb.connect("requests");
   
       let json = await reqs.find({}).toArray();
   
-      res.status(200).json(json);
+      res.status(200).json({
+        "isMember" : isMember,
+        "requests" : json
+      });
+
     } catch (error) {
       console.error("Error retrieving requests:", error);
       res.status(500).json({ error: "An error occurred while retrieving the requests" });
