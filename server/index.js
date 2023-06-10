@@ -14,7 +14,6 @@ let user_router = require('./routes/user.js');
 let feed_router = require('./routes/feed.js');
 let groups_router = require('./routes/groups.js');
 let request_router = require('./routes/request.js');
-let groups_router = require('./routes/groups.js');
 
 app.use('/user',user_router)
 app.use('/feed',feed_router)
