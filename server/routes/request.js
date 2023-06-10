@@ -51,7 +51,8 @@ router.post('/create', asyncHandler(async (req,res) => {
           "email": req.body.email,
           "status": 0, // default status is open
         //   "assignedTo": "",
-          "time_created": new Date().getTime() // current timestamp
+          "time_created": new Date().getTime(), // current timestamp
+          "city": req.body.city,
         })
 
     res.status(200).json({ message: "Request created successfully" });
