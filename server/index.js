@@ -12,8 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 let user_router = require('./routes/user.js');
 let feed_router = require('./routes/feed.js');
+let groups_router = require('./routes/groups.js');
 app.use('/user',user_router)
 app.use('/feed',feed_router)
+app.use('/groups',groups_router)
 
 
 app.listen(process.env.SERVER_PORT,process.env.SERVER_HOST,()=>{
