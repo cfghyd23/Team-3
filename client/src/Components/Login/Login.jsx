@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import './Login.css'
+import Navbar from '../../Components/Navbar/Navbar'
+
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -12,6 +14,8 @@ export const Login = (props) => {
     }
 
     return (
+        <>
+        <Navbar/>
         <div className="auth-form-container">
             <h2>Login</h2>
             <form className="login-form" onSubmit={handleSubmit}>
@@ -23,5 +27,6 @@ export const Login = (props) => {
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
         </div>
+        </>
     )
 }
