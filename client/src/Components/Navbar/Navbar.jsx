@@ -37,6 +37,11 @@ const Navbar = () => {
 
   ];
 
+  const renderDonate = (e) => {
+    e.preventDefault();
+    window.location.href = "/donate";
+  }
+
 
   return (
     <nav>
@@ -44,37 +49,17 @@ const Navbar = () => {
         <img src={Logo} alt="" />
       </div>
       <div className="navbar-links-container">
-        <a href="">Home</a>
-        <a href="">About Us</a>
-        <a href="">Testimonials</a>
-        <a href="">Contact Us</a>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/testimonials">Testimonials</a>
+        <a href="/contact">Contact Us</a>
         <a href="">
         </a>
-        <button className="primary-button">Donate Us</button>
+        <button className="primary-button" onClick={renderDonate}>Donate Us</button>
       </div>
       <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
       </div>
-      {/* <Drawer open={openMenu} onClose={() => setOpenMenu(false)} anchor="right">
-        <Box
-          sx={{ width: 250 }}
-          role="presentation"
-          onClick={() => setOpenMenu(false)}
-          onKeyDown={() => setOpenMenu(false)}
-        >
-          <List>
-            {menuOptions.map((item) => (
-              <ListItem key={item.text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-        </Box>
-      </Drawer> */}
     </nav>
   )
 }

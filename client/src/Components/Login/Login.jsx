@@ -11,10 +11,8 @@ export const Login = (props) => {
   }
 
   const login = (e) => {
-    // setEmail(e.target.value)
     localStorage.setItem("email", email)
-    
-
+    window.location.reload();
   }
 
   return (

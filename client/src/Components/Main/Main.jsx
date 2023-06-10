@@ -6,6 +6,17 @@ import { FiArrowRight } from "react-icons/fi";
 import './Main.css'
 
 const Main = () => {
+    const register = (e) => {
+        e.preventDefault();
+        window.location.href = "/register";
+    }
+
+    const login = (e) => { 
+        e.preventDefault();
+        window.location.href = "/login";
+    }
+
+
     return (
         <div className="home-container">
             <Navbar />
@@ -24,13 +35,13 @@ const Main = () => {
                     </p>
                     <div className="row">
                         <a href="/" className='col'>
-                            <button className="secondary-button">
+                            <button className="secondary-button" onClick={register}>
                                 Get Started <FiArrowRight />{" "}
                             </button>
                         </a>
                         <br />
                         <a href="/" className='col'>
-                            <button className="secondary-button ">
+                            <button className="secondary-button " onClick={login}>
                                 Login <FiArrowRight />{" "}
                             </button>
                         </a>
