@@ -5,8 +5,9 @@ const router = exp.Router();
 const getUserData = require("./user.js").getUserData
 const { ObjectId } = require('mongodb');
 
-router.get('/', asyncHandler(async (req, res) => {
-    let user = await getUserData(req.body.user)
+router.post('/', asyncHandler(async (req, res) => {
+  console.log(req.body)  
+  let user = await getUserData(req.body.user)
     let isMember = false;
     
     if(user.role == 1){
