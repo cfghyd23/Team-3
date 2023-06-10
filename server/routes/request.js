@@ -119,5 +119,23 @@ router.put('/assign/:id', asyncHandler(async (req, res) => {
     }
   }))
 
+router.post('/claim',asyncHandler(async (req,res)=>{
+  const mongodb = new mongodbConnector();
+  let reqs = await mongodb.connect("requests");
+
+  await reqs.updateOne({
+    _id : new ObjectId(req.body.id),
+  },{
+    $set : {
+      status : 0
+    }
+  })
+
+  res.json({
+    "msg" : "Updated request status"
+  })
+
+}))
+
 module.exports = router
 
