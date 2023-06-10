@@ -11,6 +11,11 @@ import { Routes, Route, Navigate , BrowserRouter } from "react-router-dom";
 
 // V 
 import ContactForm from './Components/ContactForm/ContactForm'
+import FeedPlaceholder from './Components/FeedPlaceholder/FeedPlaceholder';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 function App() {
   return (
@@ -30,6 +35,7 @@ function App() {
        {/* <StudentRegister/> */}
 
        <ContactForm/>
+       {/* <FeedPlaceholder/> */}
     </div>
   );
 }
