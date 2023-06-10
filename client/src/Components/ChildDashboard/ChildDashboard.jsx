@@ -1,5 +1,6 @@
 import React from 'react'
 import './ChildDashboard.css'
+import axios from 'axios';
 import Feedcard from '../Feedcard/Feedcard'
 import DashboardNavbar from '../DashboardNavbar/DashboardNavbar'
 import StudentProfile from '../StudentProfile.jsx/StudentProfile'
@@ -44,6 +45,14 @@ const item = [
 ]
 const ChildDashboard = () => {
 
+  axios.get('http://localhost:3030/request/', {
+    data: { 
+      user : localStorage.getItem('email')
+    }  
+}).then(res=>{
+  console.log(res)
+})
+
   const feedposts = item.map((items) => {
     return <Feedcard key={items.key} tags={items.tag} title={items.title} description={items.description} />
   });
@@ -51,7 +60,7 @@ const ChildDashboard = () => {
   return (
     <>
     <DashboardNavbar/>
-    <div className='container '>
+    <div className='container'>
       <div className="row">
         {feedposts}
       </div>
