@@ -13,7 +13,8 @@ feed_router.post('/create',asyncHandler(async (req,res)=>{
         "tag": req.body.tag,
         "title" : req.body.title,
         "description" : req.body.description,
-        "time_creater" : (new Date()).getTime() // current timestamp 
+        "author": req.body.email,
+        "time_created" : (new Date()).getTime() // current timestamp 
     })
 
     let response = new Response(res)
@@ -29,16 +30,17 @@ feed_router.get('/fetch', asyncHandler(async (req,res)=>{
     let mongo = new mongodbConnector()
     let feeds = await mongo.connect("feeds")
 
-    let sorted_by_dsc_tm = feeds.aggregate({
+    let sorted_by_dsc_tm = await(await feeds.aggregate([{
         '$sort' : {
             timestamp : -1
         }
-    })
+    }])).toArray()
 
-    let response = new Response()
+    console.log(sorted_by_dsc_tm)
+    let response = new Response(res)
     response.sendJson({
         "feeds" : sorted_by_dsc_tm
-    })
+    },200)
 
 }))
 
