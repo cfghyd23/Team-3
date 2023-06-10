@@ -18,6 +18,28 @@ const item = [
     description: 'card description',
     author : 'username'
   },
+  {
+    key: 5,
+    tag: 'card tag 1',
+    title: 'card title 1',
+    description: 'card description',
+    author : 'username'
+  },
+  {
+    key: 3,
+    tag: 'card tag 1',
+    title: 'card title 1',
+    description: 'card description',
+    author : 'username'
+  },
+  {
+    key: 4,
+    tag: 'card tag 1',
+    title: 'card title 1',
+    description: 'card description',
+    author : 'username'
+  },
+
   
 ]
 const ChildDashboard = () => {
@@ -30,7 +52,7 @@ const ChildDashboard = () => {
     <>
     <DashboardNavbar/>
     <div className='container '>
-      <div className="row align-items-">
+      <div className="row">
         {feedposts}
       </div>
     </div>
