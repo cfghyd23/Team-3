@@ -52,7 +52,7 @@
     <!-- Request Card  -->
     <div class="container">
 
-      <div class="row" id="row_data" style="text-align:center">
+      <div class="col-12" id="row_data" style="text-align:center">
         
 
 
@@ -102,21 +102,32 @@
         return arr[ind]
       }
 
+      function status(ind){
+        let arr = [
+          "Open",
+          "Assigned",
+          "Resolved"
+        ]
+        return arr[ind]
+      }
+
       function request(data){
-        return `<div class="col-6">
+        return `<div class="col-6" style="display:inline-block">
           <div class="card" style="width: 35rem;">
             <div class="card-body">
               <p href="#" class="btn btn-dark px-4">`+map_Req(data.tag)+`</p>
               <h5 class="card-title">`+data.title+`</h5>
               <p class="card-text">`+data.description+`</p>
+              <p href="#" class="btn btn-success px-5">`+status(data.status)+`</p><br>
+              <p href="#" class="btn btn-primary px-5"`+(isMember ? "style=display:none;" : "")+`>Claim</p>
             </div>
           </div>
-        </div>`
+        </div><br>`
         
       }
   
       function request_emergency(data){
-        return ` <div class="col-6">
+        return ` <div class="col-6" style="display:inline-block">
           <div class="card" style="width: 35rem;">
             <div class="card-body">
               <p href="#" class="btn btn-dark px-4">`+map_Req(data.tag)+`</p>
@@ -126,10 +137,11 @@
               <p href="#" class="btn btn-dark">Funds</p>
               <p href="#" class="btn btn-close-white border-black px-5">`+data.funds+`</p>
               <br>
-              <p href="#" class="btn btn-success px-5">`+data.status+`</p>
+              <p href="#" class="btn btn-success px-5">`+status(data.status)+`</p>
+              <p href="#" class="btn btn-primary px-5"`+(isMember ? "style=display:none;" : "")+`> Claim</p>
             </div>
           </div>
-        </div> `
+        </div><br>`
       
    
       }

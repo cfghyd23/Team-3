@@ -74,9 +74,15 @@
   </script>
 </head>
 <body>
+  <script>
+    function submitForm(event){
+      localStorage.setItem('email',event.target.elements.username.value)
+    }
+
+  </script>
   <div class="container">
     <h2>Login</h2>
-    <form action="login.php" method="POST">
+    <form action="/html/dashboard.html"  onsubmit="submitForm(event)">
       <label for="username">Username</label>
       <input type="text" placeholder="Enter your username" name="username">
       

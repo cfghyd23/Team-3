@@ -205,14 +205,47 @@
   </head>
   <body>
     <div class="testbox">
-    <form action="/">
+
+      <script>
+        function submitForm(event) {
+          event.preventDefault()
+          let ele = event.target.elements
+          tag = parseInt(ele.tag.value)
+          title = ele.title.value
+          description  = ele.description.value
+          funds = ele.funds.value
+          city = ele.city.value
+          emergency = ele.emergency.value
+
+          let xhttp = new XMLHttpRequest()
+        xhttp.onload = function(){
+            alert("Request Posted !")
+        }  
+        let send_data = JSON.stringify({ 
+          "tag" : tag,
+          "title" : title,
+          "description" : description,
+          "funds" : funds,
+          "email" : localStorage.getItem('email'),
+          "city" : city,
+          "emergency" : emergency
+        })
+        xhttp.open("POST","http://localhost:3030/request/create")
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(send_data);
+          
+        }
+
+      </script>
+
+    <form action="/html/dashboard.html" onsubmit="submitForm(event)">
       <div class="banner">
   
         
       </div>
       <br>
       <p>Tag</p>
-      <select required>
+      <select required name="tag">
         <option value="0">Housing</option>
         <option value="1">Food</option>
         <option value="2">Education</option>
@@ -222,27 +255,38 @@
       </select>
       <div class="item">
         <p>Title </p>
-        <input type="text" name="name"/>
+        <input type="text" name="title"/>
       </div>
       
       
       <div class="item">
         <p>Description<span class="required">*</span></p>
-        <input type="text" name="name" required/>
+        <input type="text" name="description" required/>
       </div>
      
        
-      
+      <div class="item">
+        <p>City </p>
+        <input type="text" name="city"/>
+      </div>
     
      
         <div class="item">
           <p>Funds<span class="required">*</span></p>
-          <textarea rows="1" required></textarea>
+          <input rows="1" value="0" name="funds" />
         </div>
-        <div class="btn-block">
-          <button type="submit" href="/">Emergency</button>
-        </div>
+        
+        <p>Emergency</p>
+        <select required name="emergency">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+         
+        </select>
+
+    <br>
 <br>
+
+<button type="submit"> Submit </button>
 
 </div>
     </form>

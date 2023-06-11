@@ -21,7 +21,7 @@ router.post('/', asyncHandler(async (req, res) => {
   
       res.status(200).json({
         "isMember" : isMember,
-        "requests" : json
+        "requests" : json 
       });
 
     } catch (error) {
