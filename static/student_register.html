@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 300px;
+      padding: 16px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    p {
+      text-align: center;
+      color: #555;
+    }
+
+    a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    function redirectToLogin() {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Registration</h2>
+    <form action="student_register.php" method="POST">
+      <label for="name">Name</label>
+      <input type="text" placeholder="Enter your name" name="name">
+      
+      <label for="email">Email</label>
+      <input type="email" placeholder="Enter your email" name="email">
+      
+      <label for="phone">Phone Number</label>
+      <input type="text" placeholder="Enter your phone number" name="phone">
+      
+      <label for="subject">Your Age</label>
+      <select name="subject">
+        <option value="child">less than 15 years</option>
+        <option value="young">15 to 18</option>
+        <option value="youngadult">>18</option>
+      </select>
+      
+      <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="#" onclick="redirectToLogin()">Login</a></p>
+  </div>
+</body>
+</html>
