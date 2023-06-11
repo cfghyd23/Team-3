@@ -4,34 +4,58 @@
     <title>Upload</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/feed.css">  </head>
+    <link rel="stylesheet" href="http://localhost:3030/css/feed.css">  </head>
   <body>
     <div class="testbox">
-    <form action="/">
+
+      <script>
+          function submitForm(event) {
+            event.preventDefault()
+            let ele = event.target.elements
+            tag = parseInt(ele.tag.value)
+            title = ele.title.value
+            description  = ele.description.value
+
+            let xhttp = new XMLHttpRequest()
+          xhttp.onload = function(){
+              alert("Feed Posted !")
+          }  
+          let send_data = JSON.stringify({ 
+            "tag" : tag,
+            "title" : title,
+            "description" : description,
+            "email" : localStorage.getItem('email')
+          })
+          xhttp.open("POST","http://localhost:3030/feed/create")
+          xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          xhttp.send(send_data);
+            
+          }
+
+        </script>
+
+    <form action="" onsubmit="submitForm(event)">
       <div class="banner">
        
         <h1>Engage With Us</h1>
       </div>
       <div class="Type of post">
         <p>Type of post</p>
-<select required>
-            <option value="">Career Opportunities</option>
-            <option value="1">Motivational posts</option>
+<select required name = "tag">
+            <option value="0">Motivational posts</option>
+            <option value="1">Career Opportunities</option>
             <option value="2">Fun Facts</option>
             <option value="3">Sessions</option>
-            
           </select></div>
       <div class="item">
         <p>Title of Post</p>
-        <input type="text" name="name"/>
+        <input type="text" name="title"/>
       </div>
       
-          
-        
      
       <div class="item">
         <p>Include a description.<span class="required">*</span></p>
-        <textarea rows="3" required></textarea>
+        <textarea rows="3" required name = "description"></textarea>
       </div>
      
         <div class="btn-block">

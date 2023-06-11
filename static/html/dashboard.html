@@ -44,44 +44,15 @@
     </nav>
 
 
-    <div class="container " style="height : 100px"></div>
+    <div class="container " style="height : 100px ; text-align: center;"></div>
 
 
 
     <!-- Request Card  -->
     <div class="container">
 
-      <div class="row">
-
-        <div class="col-6">
-          <div class="card" style="width: 35rem;">
-            <div class="card-body">
-              <p href="#" class="btn btn-dark px-4">Tag Topic</p>
-              <p href="#" class="btn btn-danger px-5">Alert</p>
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p href="#" class="btn btn-dark">Funds</p>
-              <p href="#" class="btn btn-close-white border-black px-5">80,000 </p>
-              <br>
-              <p href="#" class="btn btn-success px-5">Status </p>
-
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="col-6">
-          <div class="card" style="width: 35rem;">
-            <div class="card-body">
-              <p href="#" class="btn btn-dark px-4">Tag Topic</p>
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              
-
-            </div>
-          </div>
-        </div>
+      <div class="row" id="row_data" style="text-align:center">
+        
 
       </div>
     </div>
@@ -90,73 +61,8 @@
 
     <!-- Feed Container  -->
     <div class="container " >
-      <div class="row  bg-blue " style=" height: 100px;">
-        
-        <div class="col-12"  >
-         
-         
-          <div class="card my-5"  style="width: 60rem; display: block; margin: auto;">
-            
-            <div class="card-body ">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quasi quam adipisci, itaque id molestias culpa. Voluptate, minima et iste nulla maiores numquam ipsam ea a sed. Facere alias quos totam eos? Eveniet quos velit quod eum ipsum eaque fugit.
-              </p>
-              <p class="btn btn-primary">Go somewhere</p>
-              <p class="btn btn-success">AuthorName </p>
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-
-        <div class="col-12" >
-         
-         
-          <div class="card my-5"  style="width: 60rem; display: block; margin: auto;">
-            
-            <div class="card-body ">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quasi quam adipisci, itaque id molestias culpa. Voluptate, minima et iste nulla maiores numquam ipsam ea a sed. Facere alias quos totam eos? Eveniet quos velit quod eum ipsum eaque fugit.
-              </p>
-              <p class="btn btn-primary">Go somewhere</p>
-              <p class="btn btn-success">AuthorName </p>
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-        <div class="col-12" >
-         
-         
-          <div class="card my-5"  style="width: 60rem; display: block; margin: auto;">
-            
-            <div class="card-body ">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quasi quam adipisci, itaque id molestias culpa. Voluptate, minima et iste nulla maiores numquam ipsam ea a sed. Facere alias quos totam eos? Eveniet quos velit quod eum ipsum eaque fugit.
-              </p>
-              <p class="btn btn-primary">Go somewhere</p>
-              <p class="btn btn-success">AuthorName </p>
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-        
+      <div class="row  bg-blue " style=" height: 100px;" id="feed_data">
+      
         
       </div>
     </div>
@@ -167,5 +73,128 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      let req_data = []
+      let feed_data = []
+      let isMember = false
+      
+      function map_Req(ind){
+        let arr = [
+          "Housing",
+          "Food",
+          "Education",
+          "Health",
+          "Other"
+        ]
+        return arr[ind]
+      }
+
+      function map_Feed(ind){
+        let arr = [
+          "Motivational Story",
+          "Career Opputunities",
+          "Fun Fact",
+          "Session / Youtube"
+        ]
+        return arr[ind]
+      }
+
+      function request(data){
+        return `<div class="col-6">
+          <div class="card" style="width: 35rem;">
+            <div class="card-body">
+              <p href="#" class="btn btn-dark px-4">`+map_Req(data.tag)+`</p>
+              <h5 class="card-title">`+data.title+`</h5>
+              <p class="card-text">`+data.description+`</p>
+            </div>
+          </div>
+        </div>`
+        
+      }
+  
+      function request_emergency(data){
+        return ` <div class="col-6">
+          <div class="card" style="width: 35rem;">
+            <div class="card-body">
+              <p href="#" class="btn btn-dark px-4">`+map_Req(data.tag)+`</p>
+              <p href="#" class="btn btn-danger px-5">Alert</p>
+              <h5 class="card-title">`+data.title+`</h5>
+              <p class="card-text">`+data.description+`</p>
+              <p href="#" class="btn btn-dark">Funds</p>
+              <p href="#" class="btn btn-close-white border-black px-5">`+data.funds+`</p>
+              <br>
+              <p href="#" class="btn btn-success px-5">`+data.status+`</p>
+            </div>
+          </div>
+        </div> `
+      
+   
+      }
+
+      function feed(data){
+        return `<div class="col-12">
+          <div
+            class="card my-5"
+            style="width: 60rem; display: block; margin: auto"
+          >
+            <div class="card-body">
+              <p href="#" class="btn btn-dark px-4">`+map_Feed(data.tag)+`</p>
+              <h5 class="card-title">`+data.title+`</h5>
+              <p class="card-text">`+data.description+`</p>
+            </div>
+          </div>
+        </div>`
+      }
+  
+      
+      function poppulate_req_data(){
+          let xhttp = new XMLHttpRequest()
+          xhttp.onload = function(){
+              isMember = JSON.parse(xhttp.responseText).isMember
+              req_data = JSON.parse(xhttp.responseText).requests
+              poppulate_feed_data()
+          }  
+  
+          xhttp.open("POST","http://localhost:3030/request/")
+          xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          xhttp.send(JSON.stringify({ "user" : "max@gmail.com"}));
+      }
+  
+      function poppulate_feed_data(){
+          let xhttp = new XMLHttpRequest()
+          xhttp.onload = function(){
+              feed_data = JSON.parse(xhttp.responseText).feeds
+              console.log(req_data)
+              console.log(feed_data)
+              let html_data = ""
+              for(i = 0 ; i < req_data.length ; i++){
+                  d = req_data[i]
+                  console.log(d)
+                  if(d.emergency){
+                      html_data += request_emergency(d)
+                  }
+                    else{
+                      html_data += request(d)
+                  }
+              }
+              
+              document.getElementById('row_data').innerHTML = html_data
+              html_data = ""
+              for(i = 0 ; i < feed_data.length; i++){
+                  html_data += feed(feed_data[i])
+              }
+              document.getElementById('feed_data').innerHTML = html_data
+          }  
+  
+          xhttp.open("GET","http://localhost:3030/feed/fetch")
+          xhttp.send();
+      }
+      poppulate_req_data()
+  
+  </script>
+
+
+
   </body>
 </html>
