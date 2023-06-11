@@ -16,7 +16,7 @@
     <title>Rainbow Homes</title>
   </head>
   <body>
-    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar bg-dark fixed-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">RainbowHomes</a>
         <button
@@ -36,7 +36,7 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
+              <a class="nav-link" href="../html/profile.html">Profile</a>
             </li>
           </ul>
         </div>
@@ -51,7 +51,7 @@
 
     <!-- Request Card  -->
     <div class="container">
-
+        <h1 class="text-center h1">Requests</h1>
       <div class="col-12" id="row_data" style="text-align:center">
         
         <img src="https://icon-library.com/images/loading-icon-animated-gif/loading-icon-animated-gif-19.jpg" width="200px">
@@ -63,8 +63,10 @@
 
     <!-- Feed Container  -->
     <div class="container " >
+        <h1 class="text-center h1">Daily Feed</h1>
       <div class="row  bg-blue " style=" height: 100px;" id="feed_data">
-      
+        <!-- <img src="https://icon-library.com/images/loading-icon-animated-gif/loading-icon-animated-gif-19.jpg" width="200px"> -->
+
       
       </div>
     </div>
@@ -122,7 +124,7 @@
 
       function request(data){
         return `<div class="col-6" style="display:inline-block">
-          <div class="card" style="width: 35rem;">
+          <div class="card my-5" style="width: 35rem;">
             <div class="card-body">
               <p href="#" class="btn btn-dark px-4">`+map_Req(data.tag)+`</p>
               <h5 class="card-title">`+data.title+`</h5>
@@ -137,7 +139,7 @@
   
       function request_emergency(data){
         return ` <div class="col-6" style="display:inline-block">
-          <div class="card" style="width: 35rem;">
+          <div class="card my-5" style="width: 35rem;">
             <div class="card-body">
               <p href="#" class="btn btn-dark px-4">`+map_Req(data.tag)+`</p>
               <p href="#" class="btn btn-danger px-5">Alert</p>
