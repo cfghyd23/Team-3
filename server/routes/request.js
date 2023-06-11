@@ -31,12 +31,13 @@ router.post('/', asyncHandler(async (req, res) => {
 }))  
 
 // get specific user request by _id of the request
+/*
 router.get('/:id', asyncHandler(async (req,res) => {
     try {
         const mongodb = new mongodbConnector();
         let reqs = await mongodb.connect("requests");
 
-        let json = await req.findOne({
+        let json = await reqs.findOne({
             "_id": req.params.id
         })
 c
@@ -47,6 +48,8 @@ c
 
     }
 }))
+*/
+
 
 router.post('/create', asyncHandler(async (req,res) => {
     try {
@@ -104,21 +107,19 @@ router.put('/close/:id', asyncHandler(async (req, res) => {
 }))
 
 // update the assigned member for the request
-router.post('/claim',asyncHandler(async (req,res)=>{
+router.get('/claim',asyncHandler(async (req,res)=>{
   const mongodb = new mongodbConnector();
   let reqs = await mongodb.connect("requests");
-
+  
   await reqs.updateOne({
-    _id : new ObjectId(req.body.id),
-  },{
+    _id : new ObjectId(req.query.id),
+    },{
     $set : {
       status : 1
     }
   })
 
-  res.json({
-    "msg" : "Updated request status"
-  })
+  res.redirect('http://localhost:3030/html/dashboard.html')
 
 }))
 

@@ -54,7 +54,7 @@
 
       <div class="col-12" id="row_data" style="text-align:center">
         
-
+        <img src="https://icon-library.com/images/loading-icon-animated-gif/loading-icon-animated-gif-19.jpg" width="200px">
 
       </div>
     </div>
@@ -111,15 +111,24 @@
         return arr[ind]
       }
 
+      function getBtn(id){
+        arr = [
+          "btn-warning",
+          "btn-success",          
+        ]
+
+        return arr[id]
+      }
+
       function request(data){
         return `<div class="col-6" style="display:inline-block">
           <div class="card" style="width: 35rem;">
             <div class="card-body">
               <p href="#" class="btn btn-dark px-4">`+map_Req(data.tag)+`</p>
               <h5 class="card-title">`+data.title+`</h5>
-              <p class="card-text">`+data.description+`</p>
-              <p href="#" class="btn btn-success px-5">`+status(data.status)+`</p><br>
-              <p href="#" class="btn btn-primary px-5"`+(isMember ? "style=display:none;" : "")+`>Claim</p>
+              <p class="card-text">`+data.description+`</p>`
+              + `<p href="#" class="btn `+getBtn(data.status)+` px-5">`+status(data.status)+`</p><br>`+
+              `<a href="http://localhost:3030/request/claim?id=`+data._id+`" class="btn btn-primary px-5"`+(isMember ? "style=display:none;" : "")+`>Claim</a>
             </div>
           </div>
         </div><br>`
@@ -135,10 +144,9 @@
               <h5 class="card-title">`+data.title+`</h5>
               <p class="card-text">`+data.description+`</p>
               <p href="#" class="btn btn-dark">Funds</p>
-              <p href="#" class="btn btn-close-white border-black px-5">`+data.funds+`</p>
-              <br>
-              <p href="#" class="btn btn-success px-5">`+status(data.status)+`</p>
-              <p href="#" class="btn btn-primary px-5"`+(isMember ? "style=display:none;" : "")+`> Claim</p>
+              <p href="#" class="btn btn-close-white border-black px-5">`+data.funds+`</p> <br>`
+              + `<p href="#" class="btn `+getBtn(data.status)+` px-5">`+status(data.status)+`</p><br>`
+              + `<a href="http://localhost:3030/request/claim?id=`+data._id+`" class="btn btn-primary px-5"`+(isMember ? "style=display:none;" : "")+`>Claim</a>
             </div>
           </div>
         </div><br>`
