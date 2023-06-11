@@ -65,18 +65,20 @@
   </style>
   <script>
     function redirectToMemberRegistration() {
-      window.location.href = "member_register.html";
+      window.location.href = "/html/member_register.html";
     }
 
     function redirectToStudentRegistration() {
-      window.location.href = "student_register.html";
+      window.location.href = "/html/student_register.html";
     }
   </script>
 </head>
 <body>
   <script>
     function submitForm(event){
+      event.preventdefault()
       localStorage.setItem('email',event.target.elements.username.value)
+      window.location.href = "/html/dashboard.html";
     }
 
   </script>
